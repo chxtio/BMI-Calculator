@@ -3,4 +3,6 @@
     <string name="Heading">BMI API</string>
     <string name="Text1">Enter height: </string>
     <string name="Text2">Enter weight: </string>
+    <string name="label_text">Your BMI: </string>
+    <string name="risk_text">Risk: </string>
 </resources>

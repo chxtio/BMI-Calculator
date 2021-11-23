@@ -23,12 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
     private bmi BMI;
     private Button bmi_button;
-    private Button label_button;
-    private Button message_button;
+    private Button educate_button;
     EditText h;
     EditText w;
     int height;
     int weight;
+    EditText labelMsg;
+    EditText riskMsg;
 
 //    public static final String URL = "http://webstrar99.fulton.asu.edu/page3/Service1.svc/calculateBMI?height=60&weight=156";
     public String URL;
@@ -41,11 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         h = findViewById(R.id.height);
         w = findViewById(R.id.weight);
+        labelMsg = findViewById(R.id.label_bmi_text);
+        riskMsg = findViewById(R.id.message_risk_text);
 
         // Assign button IDs to objects
         bmi_button = findViewById(R.id.button_bmi);
-        label_button = findViewById(R.id.button_label);
-        message_button = findViewById(R.id.button_message);
+        educate_button = findViewById(R.id.button_educate);
 
         bmi_button.setOnClickListener(new View.OnClickListener() {
             @Override
