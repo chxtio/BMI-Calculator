@@ -1,8 +1,10 @@
 package com.bmicalculator.Models;
 
+import java.util.Random;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class bmi {
     double b;
@@ -25,6 +27,7 @@ public class bmi {
     }
 
     public String getMore() {
-        return more[0];
+        Random rand = new Random();
+        return more[rand.nextInt(3)];
     }
 }

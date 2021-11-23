@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bmicalculator.Models.bmi;
 import com.codepath.asynchttpclient.AsyncHttpClient;
@@ -52,16 +54,22 @@ public class MainActivity extends AppCompatActivity {
                     height = Integer.parseInt(h.getText().toString());
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-//                    return;
-                    height = 0; //default fallback value
+                    Toast toast = Toast.makeText(getApplication().getBaseContext(), "Error: Input height", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                    return;
+//                    height = 0; //default fallback value
                 }
 
                 try {
                     weight = Integer.parseInt(w.getText().toString());
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-//                    return;
-                    weight = 0; //default fallback value
+                    Toast toast = Toast.makeText(getApplication().getBaseContext(), "Error: Input weight", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                    return;
+//                    weight = 0; //default fallback value
                 }
 
                 URL =  "http://webstrar99.fulton.asu.edu/page3/Service1.svc/calculateBMI?height=" + height + "&weight=" + weight;
@@ -72,9 +80,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(int i, Headers headers, JSON json) {
                         Log.d(TAG, "onSuccess");
                         JSONObject jsonObject = json.jsonObject;
-                        Log.i(TAG, "jsonObject: " + jsonObject);
+//                        Log.i(TAG, "jsonObject: " + jsonObject);
                         try {
                             BMI = new bmi(jsonObject);
+                            Log.i(TAG, "bmi: " + BMI.getBMI());
+                            Log.i(TAG, "bmi: " + BMI.getRisk());
+                            Log.i(TAG, "bmi: " + BMI.getMore());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -88,5 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
 }
