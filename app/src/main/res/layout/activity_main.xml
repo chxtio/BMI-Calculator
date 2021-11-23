@@ -39,27 +39,29 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/input"
                 android:layout_width="0dp"
-                android:textSize="22sp"
                 android:layout_height="wrap_content"
-                android:text="@string/Text1"
                 android:layout_gravity="left"
-                android:layout_weight="1"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:text="@string/Text1"
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/height"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="inches"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="70dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="inches" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,17 +86,18 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="pounds"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="70dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="pounds"
+                android:inputType="number" />
         </LinearLayout>
 
 
         <!-- First Button of the activity. -->
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_bmi"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
@@ -109,7 +112,7 @@
 
         <!-- Second Button of the activity. -->
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_label"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
@@ -125,7 +128,7 @@
 
         <!-- Third Button of the activity. -->
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_message"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
