@@ -2,7 +2,9 @@ package com.bmicalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     double bmi_output;
     String risk;
 
-//    public static final String URL = "http://webstrar99.fulton.asu.edu/page3/Service1.svc/calculateBMI?height=60&weight=156";
     public String URL;
     public static  final String TAG = "MainActivity";
 
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     return;
-//                    height = 0; //default fallback value
                 }
 
                 try {
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     return;
-//                    weight = 0; //default fallback value
                 }
 
                 URL =  "http://webstrar99.fulton.asu.edu/page3/Service1.svc/calculateBMI?height=" + height + "&weight=" + weight;
@@ -85,12 +84,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(int i, Headers headers, JSON json) {
                         Log.d(TAG, "onSuccess");
                         JSONObject jsonObject = json.jsonObject;
-//                        Log.i(TAG, "jsonObject: " + jsonObject);
+
                         try {
                             BMI = new bmi(jsonObject);
                             bmi_output = BMI.getBMI();
                             risk = BMI.getRisk();
-//                            String color = getColor(bmi_output);
                             int color =  Color.parseColor(getColor(bmi_output));
 
                             Log.i(TAG, "bmi: " + bmi_output);
@@ -102,11 +100,19 @@ public class MainActivity extends AppCompatActivity {
                             Log.i(TAG, "risk color: " + getColor(bmi_output));
                             labelMsg.setTextColor(color);
                             riskMsg.setTextColor(color);
-
-                            Log.i(TAG, "bmi: " + BMI.getMore());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        educate_button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String url = BMI.getMore();
+                                Log.i(TAG, "educate link: " + url);
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(browserIntent);
+                            }
+                        });
                     }
 
                     @Override
@@ -117,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
 
     public String getColor(double yourBMI) {
