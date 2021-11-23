@@ -2,6 +2,7 @@ package com.bmicalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     int weight;
     EditText labelMsg;
     EditText riskMsg;
+    double bmi_output;
+    String risk;
 
 //    public static final String URL = "http://webstrar99.fulton.asu.edu/page3/Service1.svc/calculateBMI?height=60&weight=156";
     public String URL;
@@ -85,8 +88,21 @@ public class MainActivity extends AppCompatActivity {
 //                        Log.i(TAG, "jsonObject: " + jsonObject);
                         try {
                             BMI = new bmi(jsonObject);
-                            Log.i(TAG, "bmi: " + BMI.getBMI());
-                            Log.i(TAG, "bmi: " + BMI.getRisk());
+                            bmi_output = BMI.getBMI();
+                            risk = BMI.getRisk();
+//                            String color = getColor(bmi_output);
+                            int color =  Color.parseColor(getColor(bmi_output));
+
+                            Log.i(TAG, "bmi: " + bmi_output);
+                            labelMsg.setText(String.valueOf(bmi_output));
+
+                            Log.i(TAG, "bmi: " + risk);
+                            riskMsg.setText(risk);
+
+                            Log.i(TAG, "risk color: " + getColor(bmi_output));
+                            labelMsg.setTextColor(color);
+                            riskMsg.setTextColor(color);
+
                             Log.i(TAG, "bmi: " + BMI.getMore());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -101,6 +117,16 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
 
+    public String getColor(double yourBMI) {
+        if(yourBMI < 18)
+            return "#FF0D26C8";
+        else if(yourBMI <25)
+            return "#FF1C8C08";
+        else if(yourBMI < 30)
+            return "#FF7010C5";
+        else
+            return "#FFEF0A24";
     }
 }

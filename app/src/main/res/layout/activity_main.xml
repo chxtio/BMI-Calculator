@@ -130,7 +130,7 @@
 
             <EditText
                 android:id="@+id/label_bmi_text"
-                android:layout_width="70dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginStart="20dp"
@@ -161,14 +161,14 @@
 
             <EditText
                 android:id="@+id/message_risk_text"
-                android:layout_width="70dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="70dp"
                 android:layout_marginBottom="0dp"
-                android:hint=""
+                android:hint="You are obese"
                 android:inputType="number" />
         </LinearLayout>
 
